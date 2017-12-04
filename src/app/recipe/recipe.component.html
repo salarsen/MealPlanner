@@ -1,0 +1,39 @@
+<legend>Add a Recipe</legend>
+
+<form (submit)='onSumbit($event, form) || form.reset()' #form='ngForm'>
+  {{ form.value | json }}
+  <div>
+    <label for="name">Recipe Name:</label>
+    <input type="text" name="name" [(ngModel)]="recipe.name" required>
+  </div>
+  <select name="sourceSelector" [(ngModel)]="sourceSelector">
+    <option value="book">Book</option>
+    <option value="web">Webpage</option>
+    <option value="magazine">Magazine</option>
+    <option value="other">Other</option>
+  </select>
+  <!-- Add source selection check -->
+
+  <label for="source">Recipe Source:</label>
+  <div *ngIf="sourceSelector=book || sourceSelector=magazine">
+    <div>
+      <input type="text" name="source" [(ngModel)]="recipe.source">
+    </div>
+    <div>
+      <label for="pageNum">Page Number:</label>
+      <input type="number" name="pageNumber" [(ngModel)]="recipe.pageNumber">
+    </div>
+  </div>
+  <div *ngIf="sourceSelector=web">
+    <input type="url" name="source" [(ngModel)]="recipe.source">
+  </div>
+  <div>
+    <input type="text" name="source" [(ngModel)]="recipe.source">
+  </div>
+  <div>
+    <input type="text" name="source" [(ngModel)]="recipe.source">
+  </div>
+  <button [disabled]="form.invalid">Add Recipe</button>
+</form>
+
+<button routerLink="/home">Back</button>
