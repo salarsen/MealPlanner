@@ -1,14 +1,14 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { Recipe } from '../recipe';
+import { Recipe } from '../../recipe';
 
 @Component({
-  selector: 'app-recipe',
-  templateUrl: './recipe.component.html',
-  styleUrls: ['./recipe.component.css']
+  selector: 'app-recipe-new',
+  templateUrl: './recipe-new.component.html',
+  styleUrls: ['./recipe-new.component.css']
 })
-export class RecipeComponent implements OnInit {
+export class RecipeNewComponent implements OnInit {
 
   recipe : Recipe = new Recipe();
 
