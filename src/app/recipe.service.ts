@@ -13,7 +13,7 @@ export class recipeService {
     public static base = '';
     constructor(private http: Http){}
 
-    getRecipes(): Observable<Recipes[]> {
+    getRecipes(): Observable<Recipe[]> {
         return this.http.get(recipeService.base)
             .map(response => response.json());
     }
