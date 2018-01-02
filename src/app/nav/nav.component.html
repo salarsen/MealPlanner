@@ -1,0 +1,5 @@
+<button (click)='logout($event)'>Logout</button>
+<span *ngFor='let link of links; let idx = index'>
+    <button routerLink="/{{ link.link }}">{{ link.name }}</button>
+</span>
+<!-- <button routerLink="/recipe/new">Test</button> -->

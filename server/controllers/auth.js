@@ -22,9 +22,9 @@ module.exports = {
                 completeLogin(request, response, user);
             })
             .catch(error => {
-                console.log(error);
-                response.json(422).json(
+                response.status(422).json(
                     Object.keys(error.errors).map(key => error.errors[key].message)
+                    // console.log('register error',error.errors);
                 );
             });
     },

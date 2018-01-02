@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th>Recipe Name:</th>
+      <th>Source:</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let recipe of recipes'>
+      <td>{{ recipe.name }}</td>
+      <td>
+        <span *ngIf="(recipe.sourceType==='book' || recipe.sourceType==='magazine') && recipe.pageNumber!==null">{{ recipe.source }} (Pg: {{recipe.pageNumber}})</span>
+        <span *ngIf="recipe.sourceType==='url' && recipe.source"><a href="{{ recipe.source }}">Link</a></span>
+        <span *ngIf="recipe.sourceType==='other'">{{ recipe.source }}</span>
+      </td>
+      <td><button routerLink='/recipe/editRecipe/{{recipe._id}}'>Details/Edit</button></td>
+      <td><button (click)='removeRecipe($event, recipe._id)'>Delete</button></td>
+    </tr>
+  </tbody>
+</table>

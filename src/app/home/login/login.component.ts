@@ -12,12 +12,18 @@ import { User } from '../../user';
 
 export class LoginComponent {
     user: User = new User();
+    
+    loginErrors: string[] = [];
 
     constructor(private auth: AuthService, private router: Router) { }
 
     onSubmit(): void {
         this.auth.login(this.user)
-            .then(() => this.router.navigate(['recipes']))
-            .catch(() => { });
+            .then(() => this.router.navigate(['recipe']))
+            .catch(response => this.handleErrors(response.json()));
+    }
+
+    private handleErrors(errors : string[] | Error) : void {
+        this.loginErrors = Array.isArray(errors) ? errors : [errors.message];
     }
 }

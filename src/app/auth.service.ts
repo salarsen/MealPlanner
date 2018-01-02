@@ -10,9 +10,9 @@ import { User } from './user';
 @Injectable()
 
 export class AuthService {
-    private base = '/auth/';
+    private base = '/api/auth/';
 
-    constructor(private cookieService: CookieService,private http: Http){}
+    constructor(private cookieService: CookieService, private http: Http){}
 
     login(user: User): Promise<User> {
         return this.http.post(this.base + 'login',user)
@@ -37,7 +37,7 @@ export class AuthService {
     }
 
     isAuthed(): boolean {
-        const expire = parseInt(this.cookieService.get('expiration'),10);
+        const expired = parseInt(this.cookieService.get('expiration'),10);
         const userId = this.currentUserID();
         const session = this.cookieService.get('session');
 

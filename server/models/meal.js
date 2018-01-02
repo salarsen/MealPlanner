@@ -1,29 +1,27 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const recipeSchema = new Schema({
+const mealSchema = new Schema({
     name : {
         type: String,
         required: true,
         trim: true,
+        default: 'Misc.'
     },
-    source : {
-        type: String,
+    mealTime : {
+        type: Date,
+        required: true,
         trim: true,
     },
-    sourceType : {
-        type: String,
-        default: null,
-    },
-    pageNumber : {
-        type: Number,
-        default: null,
-    },
+    _recipes : [{
+        type: Schema.Types.ObjectId,
+        ref: 'Recipe',
+    }],
     _creator : {
         type: Schema.Types.ObjectId,
         ref : 'User',
     },
-    _favorited : [{
+    _sharedWith : [{
         type: Schema.Types.ObjectId,
         ref: 'User',
     }],
@@ -31,4 +29,4 @@ const recipeSchema = new Schema({
     timestamps: true,
 });
 
-module.exports = mongoose.model('Recipe', recipeSchema);
+module.exports = mongoose.model('Meal',mealSchema);

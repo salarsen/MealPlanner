@@ -1,10 +1,15 @@
 const Recipe = require('mongoose').model('Recipe');
 
 module.exports = {
-    index(request, respones){
+    index(request, response){
         console.log('get all');
         Recipe.find({})
-            .then(recipes => response.json(recipes))
+            .then(recipes => {
+                if(!recipes) { throw new Error(); }
+
+                console.log(recipes);
+                return response.json(recipes)
+            })
             .catch(console.log);
     },
     get(request, response){
@@ -14,7 +19,7 @@ module.exports = {
             .catch(console.log);
     },
     create(request, response){
-        console.log('create',request.params);
+        request.body._creator = request.cookies.userId;
         Recipe.create(request.body)
             .then(recipe => response.json(recipe))
             .catch(console.log);

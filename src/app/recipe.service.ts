@@ -10,7 +10,9 @@ import { Response } from '@angular/http/src/static_response';
 @Injectable()
 
 export class recipeService {
-    public static base = '';
+    // public static base = '';
+
+    public static base = '/api/recipes/';
     constructor(private http: Http){}
 
     getRecipes(): Observable<Recipe[]> {
@@ -24,6 +26,7 @@ export class recipeService {
     }
 
     createRecipe(recipe: Recipe): Observable<Recipe> {
+        console.log('Attempting to add a recipe', recipe);
         return this.http.post(recipeService.base, recipe)
             .map(response => response.json());
     }

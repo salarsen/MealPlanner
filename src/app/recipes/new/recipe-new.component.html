@@ -7,8 +7,8 @@
     <input type="text" name="name" [(ngModel)]="recipe.name" required>
   </div>
   <div>
-    <label for="sourceSelector">Source:</label>
-    <select name="sourceSelector" [(ngModel)]="sourceSelector">
+    <label for="sourceType">Source:</label>
+    <select name="sourceType" [(ngModel)]="sourceType">
       <option value="book">Book</option>
       <option value="web">Webpage</option>
       <option value="magazine">Magazine</option>
@@ -16,7 +16,7 @@
     </select>
     <!-- Add source selection check -->
   </div>
-  <div *ngIf="sourceSelector==='book' || sourceSelector==='magazine'">
+  <div *ngIf="sourceType==='book' || sourceType==='magazine'">
     <div>
       <label for="source">Recipe Source:</label>
       <input type="text" name="source" [(ngModel)]="recipe.source">
@@ -27,11 +27,11 @@
     </div>
     <input type="file" name="sourceFile" [(ngModel)]="recipe.file">
   </div>
-  <div *ngIf="sourceSelector==='web'">
+  <div *ngIf="sourceType==='web'">
     <label for="source">Recipe Source:</label>
     <input type="url" name="source" [(ngModel)]="recipe.source">
   </div>
-  <div *ngIf="sourceSelector==='other'">
+  <div *ngIf="sourceType==='other'">
     <label for="source">Recipe Source:</label>
     <input type="text" name="source" [(ngModel)]="recipe.source">
     <input type="file" name="sourceFile" [(ngModel)]="recipe.file">

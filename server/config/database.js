@@ -5,7 +5,7 @@ const reg = new RegExp('\\.js$','i');
 
 const modelsPath = path.resolve('server','models');
 
-mongoose.connect('mongodb://localhost/mealPlanner');
+mongoose.connect('mongodb://localhost/mealPlanner', { useMongoClient: true });
 mongoose.connection.on('connected',() => console.log('connected to mongdob'));
 
 mongoose.Promise = global.Promise;

@@ -7,7 +7,7 @@ import { User } from '../../user';
 
 @Component({
     selector: 'recipes-registration',
-    templateUrl: './registration.component.html',
+    templateUrl: './register.component.html',
 })
 
 export class RegistrationComponent {
@@ -19,7 +19,7 @@ export class RegistrationComponent {
 
     onSubmit(): void {
         this.auth.register(this.user)
-            .then(() => this.router.navigate(['recipes']))
+            .then(() => this.router.navigate(['recipe']))
             .catch(response => this.handleErrors(response.json()));
     }
 

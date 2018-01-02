@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const validator = require('validator');
 const uniqueValidator = require('mongoose-unique-validator');
-const bcrypt = require('bcrypt-as-promised');
+const bcrypt = require('bcryptjs');
 
 const userSchema = new Schema({
     username: {
@@ -25,7 +25,10 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
+    // myRecipes : [{
+
+    // }]
 },{
     timestamps: true,
 });
@@ -43,9 +46,11 @@ userSchema.statics.validatePassword = function(candidatePassword, hashedPassword
 userSchema.pre('save',function(next){
     if(!this.isModified('password')){ return next(); }
 
+    const self = this;
+
     bcrypt.hash(this.password, 10)
         .then(hashed => {
-            this.password = hashed;
+            self.password = hashed;
 
             next();
         })
