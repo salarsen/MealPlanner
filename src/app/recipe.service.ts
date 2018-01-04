@@ -21,7 +21,7 @@ export class recipeService {
     }
 
     removeRecipe(recipe: Recipe): Observable<Recipe> {
-        return this.http.delete(`${ recipeService.base }/${ recipe._id }`)
+        return this.http.delete(`${ recipeService.base }${ recipe._id }`)
             .map(response => response.json());
     }
 
@@ -32,7 +32,7 @@ export class recipeService {
     }
 
     getRecipe(id: string): Observable<Recipe> {
-        return this.http.get(`${recipeService.base}/${id}`)
+        return this.http.get(`${recipeService.base}${id}`)
             .map(response => response.json());
     }
 

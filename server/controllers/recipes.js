@@ -26,8 +26,20 @@ module.exports = {
     },
     update(request, response){
         console.log('update',request.params);
+        recipe.findByIdAndUpdate(request.params._id, request.body, { new : true})
+            .then(recipe => response.json(recipe))
+            .catch(error => {
+                console.log(error);
+                response.status(500).json(error);
+            });
     },
     destroy(request, response){
-        console.log('delete',request.params);
+        console.log('delete',request.params.recipe_id);
+        Recipe.findByIdAndRemove(request.params.recipe_id)
+            .then(recipe => response.json(recipe))
+            .catch(error => {
+                console.log(error);
+                response.status(500).json(error);
+            });
     }
 }

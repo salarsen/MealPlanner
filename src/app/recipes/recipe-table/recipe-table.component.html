@@ -16,7 +16,7 @@
         <span *ngIf="recipe.sourceType==='other'">{{ recipe.source }}</span>
       </td>
       <td><button routerLink='/recipe/editRecipe/{{recipe._id}}'>Details/Edit</button></td>
-      <td><button (click)='removeRecipe($event, recipe._id)'>Delete</button></td>
+      <td><button (click)='removeRecipe($event, recipe)'>Delete</button></td>
     </tr>
   </tbody>
 </table>

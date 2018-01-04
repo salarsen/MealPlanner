@@ -28,9 +28,22 @@ export class RecipeTableComponent implements OnInit {
     )
   }
 
-  removeRecipe(event: Event, recipeId: string){
+  removeRecipe(event: Event, recipe: Recipe){
     event.stopPropagation();
-    console.log('Removing: ',recipeId);
+    console.log('Removing: ', recipe);
+
+    this.recipeService.removeRecipe(recipe)
+      .subscribe(recipe => {  
+        console.log('deleting: ',recipe);
+        console.log(this.recipes.includes(recipe));
+        console.log(this.recipes);
+        if (this.recipes.includes(recipe)){
+          this.recipes.splice(this.recipes.indexOf(recipe), 1);
+        }
+      }, error => {
+        console.log(error);
+        this.errorMessage = error.json();
+      });
   }
 
   addRecipe(recipe: Recipe): void {
