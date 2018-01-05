@@ -26,7 +26,7 @@ export class recipeService {
     }
 
     createRecipe(recipe: Recipe): Observable<Recipe> {
-        console.log('Attempting to add a recipe', recipe);
+        // console.log('Attempting to add a recipe', recipe);
         return this.http.post(recipeService.base, recipe)
             .map(response => response.json());
     }

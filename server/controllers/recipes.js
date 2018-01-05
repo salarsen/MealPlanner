@@ -2,7 +2,7 @@ const Recipe = require('mongoose').model('Recipe');
 
 module.exports = {
     index(request, response){
-        console.log('get all');
+        // console.log('get all');
         Recipe.find({})
             .then(recipes => {
                 if(!recipes) { throw new Error(); }
@@ -13,7 +13,7 @@ module.exports = {
             .catch(console.log);
     },
     get(request, response){
-        console.log('get 1',request.params);
+        // console.log('get 1',request.params);
         Recipe.findById(request.params.recipe_id)
             .then(recipe => response.json(recipe))
             .catch(console.log);
@@ -25,7 +25,7 @@ module.exports = {
             .catch(console.log);
     },
     update(request, response){
-        console.log('update',request.params);
+        // console.log('update',request.params);
         recipe.findByIdAndUpdate(request.params._id, request.body, { new : true})
             .then(recipe => response.json(recipe))
             .catch(error => {
@@ -34,7 +34,7 @@ module.exports = {
             });
     },
     destroy(request, response){
-        console.log('delete',request.params.recipe_id);
+        // console.log('delete',request.params.recipe_id);
         Recipe.findByIdAndRemove(request.params.recipe_id)
             .then(recipe => response.json(recipe))
             .catch(error => {

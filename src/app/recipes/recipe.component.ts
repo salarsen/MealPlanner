@@ -12,10 +12,8 @@ export class RecipeComponent implements OnInit {
     constructor(private auth: AuthService, private router: Router){}
 
     ngOnInit(): void {
-        console.log('Authed',this.auth.isAuthed());
-        if(!this.auth.isAuthed()){
-            this.router.navigate(['home']);
-        }
+        // console.log('Authed',this.auth.isAuthed());
+        if(!this.auth.isAuthed()) this.router.navigate(['home']);
 
         //stop sub-components from loading here
     }

@@ -20,7 +20,7 @@ export class RecipeTableComponent implements OnInit {
     this.recipeService.getRecipes()
       .subscribe(recipes => {
         this.recipes = recipes;
-        console.log(this.recipes);
+        // console.log(this.recipes);
       }, error => {
         console.log(`There was an error: ${ error }`);
         // this.errorMessage = error;
@@ -30,18 +30,15 @@ export class RecipeTableComponent implements OnInit {
 
   removeRecipe(event: Event, recipe: Recipe){
     event.stopPropagation();
-    console.log('Removing: ', recipe);
+    // console.log('Removing: ', recipe);
 
     this.recipeService.removeRecipe(recipe)
-      .subscribe(recipe => {  
-        console.log('deleting: ',recipe);
-        console.log(this.recipes.includes(recipe));
-        console.log(this.recipes);
+      .subscribe(() => {
         if (this.recipes.includes(recipe)){
           this.recipes.splice(this.recipes.indexOf(recipe), 1);
         }
       }, error => {
-        console.log(error);
+        // console.log(error);
         this.errorMessage = error.json();
       });
   }
